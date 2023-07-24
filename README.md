@@ -1,7 +1,5 @@
 # Todo List
 
-<<<<<<< HEAD
-
 ## add
 
 -add delete & number of
@@ -47,9 +45,4 @@ control+c
 
 =======
 
-- A starter project for react tutorial
-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 -add delete & number of
-
-> > > > > > > 5f9f463 (Serial API to CRUD & signup & login & logout)
