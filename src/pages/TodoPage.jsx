@@ -1,8 +1,12 @@
 import { Footer, Header, TodoCollection, TodoInput } from 'components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // 新增如下串接API
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { getTodos, createTodo, patchTodo, deleteTodo } from '../api/todos';
+import { useNavigate } from 'react-router-dom';
+// import { checkPermission } from '../api/auth';
+// 改成以下
+import { useAuth } from '../contexts/AuthContext'; // 引用封裝好的資訊
 
 // const dummyTodos = [
 //   {
@@ -32,6 +36,11 @@ const TodoPage = () => {
   const [inputValue, setInputValue] = useState('');
   //
   const [todos, setTodos] = useState([]);
+
+  const navigate = useNavigate();
+
+  const { isAuthenticated } = useAuth(); // 取出需要的狀態與方法
+
   // 設置事件處理器 handleInput，接住子層傳來的 onChange
   // 使用setInputValue 更新資料狀態
   const handleInput = (value) => {
@@ -196,6 +205,27 @@ const TodoPage = () => {
     };
     getTodosAsync();
   }, []);
+
+  // useEffect(() => {
+  //   const checkTokenIsValid = async () => {
+  //     const authToken = localStorage.getItem('authToken');
+  //     if (!authToken) {
+  //       navigate('/login');
+  //     }
+  //     const result = await checkPermission(authToken);
+  //     if (!result) {
+  //       navigate('/login');
+  //     }
+  //   };
+
+  //   checkTokenIsValid();
+  // }, [navigate]);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');
+    }
+  }, [navigate, isAuthenticated]);
 
   return (
     <div>

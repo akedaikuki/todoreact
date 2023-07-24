@@ -8,7 +8,7 @@ import {
 
 import { ACLogoIcon } from 'assets/images';
 import { AuthInput } from 'components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // 註冊/登入成功後自動跳轉頁面
 // 使用react-router-dom 提供的 React Hook —— useNavigate
 // 可以直接在函式中實現頁面跳轉。
@@ -16,7 +16,9 @@ import { useNavigate } from 'react-router-dom';
 
 // 串接註冊功能 追加以下
 import Swal from 'sweetalert2';
-import { register } from '../api/auth';
+// import { register, checkPermission } from '../api/auth';
+// 改用成以下
+import { useAuth } from '../contexts/AuthContext'; // 引用封裝好的資訊
 
 const SignUpPage = () => {
   const [userName, setUserName] = useState('');
@@ -24,6 +26,9 @@ const SignUpPage = () => {
   const [password, setPassword] = useState('');
   // 基本的使用方式為：
   const navigate = useNavigate();
+
+  const { register, isAuthenticated } = useAuth();
+
   // 串接註冊功能 追加以下
   const handleClick = async () => {
     if (userName.length === 0) {
@@ -36,7 +41,8 @@ const SignUpPage = () => {
       return;
     }
 
-    const { success, authToken } = await register({
+    // const { success, authToken } = await register({
+    const success = await register({
       userName,
       email,
       password,
@@ -46,7 +52,7 @@ const SignUpPage = () => {
     // 第一個參數帶入路徑，第二個參數可視情況帶入設定項。
 
     if (success) {
-      localStorage.setItem('authToken', authToken);
+      // localStorage.setItem('authToken', authToken);
       Swal.fire({
         position: 'top',
         title: '註冊成功！',
@@ -54,7 +60,7 @@ const SignUpPage = () => {
         icon: 'success',
         showConfirmButton: false,
       });
-      navigate('/todos');
+      // navigate('/todos');
       return;
     }
     Swal.fire({
@@ -65,6 +71,28 @@ const SignUpPage = () => {
       showConfirmButton: false,
     });
   };
+
+  // useEffect(() => {
+  //   const checkTokenIsValid = async () => {
+  //     const authToken = localStorage.getItem('authToken');
+  //     if (!authToken) {
+  //       return;
+  //     }
+  //     const result = await checkPermission(authToken);
+  //     if (result) {
+  //       navigate('/todos');
+  //     }
+  //   };
+
+  //   checkTokenIsValid();
+  // }, [navigate]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/todos');
+    }
+  }, [navigate, isAuthenticated]);
+
   return (
     <AuthContainer>
       <div>

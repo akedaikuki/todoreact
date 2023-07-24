@@ -8,16 +8,24 @@ import {
 
 import { ACLogoIcon } from 'assets/images';
 import { AuthInput } from 'components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // 註冊/登入成功後自動跳轉頁面
 import { useNavigate } from 'react-router-dom';
-import { login } from '../api/auth';
 import Swal from 'sweetalert2';
+
+// import { login, checkPermission } from '../api/auth'; //刪除
+// 修改成以下 掛載 useAuth，取出 login 方法與isAuthenticated 身分狀態
+import { useAuth } from '../contexts/AuthContext'; // 引用封裝好的資訊
 
 const LoginPage = () => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+
+  // 這個時候頁面上呼叫的 login() 變成是 AuthContext 裡的方法了，
+  // 需要注意回傳值變成只有一個布林值，程式邏輯需要做一點小整理
+  const { login, isAuthenticated } = useAuth(); // 取出需要的狀態與方法
+
   // 非同步操作，需要加上 async/await
   const handleClick = async () => {
     // 用判斷式排除 username 和 password 長度為 0 的狀況，若為空值則 return 離開
@@ -28,7 +36,10 @@ const LoginPage = () => {
       return;
     }
     // 調用 login() 並傳入表單資料 username 和 password
-    const { success, authToken } = await login({
+    // const { success, authToken } = await login({
+
+    // 修改成以下 回傳值變成只有一個布林值
+    const success = await login({
       userName,
       password,
     });
@@ -36,7 +47,8 @@ const LoginPage = () => {
     if (success) {
       // 成功代表我們已獲得 authToken，
       // 可用 localStorage.setItem('authToken', authToken) 將資料存入 localStorage 裡
-      localStorage.setItem('authToken', authToken);
+      // 刪除以下
+      // localStorage.setItem('authToken', authToken);
 
       // 新增使用者提示訊息 使用 sweetalert2
       // 登入成功訊息
@@ -53,7 +65,8 @@ const LoginPage = () => {
         // showConfirmButton = 是否顯示按鈕
         showConfirmButton: false,
       });
-      navigate('/todos');
+      // 刪除以下
+      // navigate('/todos');
       return;
     }
 
@@ -66,6 +79,28 @@ const LoginPage = () => {
       showConfirmButton: false,
     });
   };
+
+  // useEffect(() => {
+  //   const checkTokenIsValid = async () => {
+  //     const authToken = localStorage.getItem('authToken');
+  //     if (!authToken) {
+  //       return;
+  //     }
+  //     const result = await checkPermission(authToken);
+  //     if (result) {
+  //       navigate('/todos');
+  //     }
+  //   };
+
+  //   checkTokenIsValid();
+  // }, [navigate]);
+
+  // useEffect 裡改成使用 isAuthenticated 判斷身分狀態，然後根據頁面需求，導引到 /todos
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/todos');
+    }
+  }, [navigate, isAuthenticated]);
 
   return (
     <AuthContainer>
