@@ -19,16 +19,6 @@
       "title": "Learn to implement auth",
       "isDone": false,
       "id": 4
-    },
-    {
-      "title": "test patchTodo",
-      "isDone": false,
-      "id": 6
-    },
-    {
-      "title": "Learn postman",
-      "isDone": true,
-      "id": 5
     }
   ]
 }
