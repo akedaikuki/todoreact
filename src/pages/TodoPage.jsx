@@ -39,7 +39,8 @@ const TodoPage = () => {
 
   const navigate = useNavigate();
 
-  const { isAuthenticated } = useAuth(); // 取出需要的狀態與方法
+  // 加入 currentMember
+  const { isAuthenticated, currentMember } = useAuth(); // 取出需要的狀態與方法
 
   // 設置事件處理器 handleInput，接住子層傳來的 onChange
   // 使用setInputValue 更新資料狀態
@@ -230,7 +231,10 @@ const TodoPage = () => {
   return (
     <div>
       TodoPage
-      <Header />
+      <Header
+        // Header：帶入登入使用者名稱
+        username={currentMember?.name}
+      />
       <TodoInput
         inputValue={inputValue}
         onChange={handleInput}
