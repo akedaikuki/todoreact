@@ -1,7 +1,9 @@
-# Todo List 
+# Todo List
 
 <<<<<<< HEAD
-## add 
+
+## add
+
 -add delete & number of
 
 #### 操作
@@ -15,7 +17,7 @@
 - Step2. 下載專案
 
 ```bash
-git clone https://github.com/akedaikuki/todolist.git
+git clone https://github.com/akedaikuki/todoreact.git
 ```
 
 - Step3. 終端機輸入
@@ -29,6 +31,7 @@ npm install
 ```bash
 npm start
 ```
+
 - Step5. 瀏覽器輸入
 
 ```bash
@@ -41,9 +44,12 @@ http://localhost:3000
 ctrl+c
 control+c
 ```
+
 =======
+
 - A starter project for react tutorial
 - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 -add delete & number of
->>>>>>> 5f9f463 (Serial API to CRUD & signup & login & logout)
+
+> > > > > > > 5f9f463 (Serial API to CRUD & signup & login & logout)
