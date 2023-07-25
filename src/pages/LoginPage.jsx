@@ -37,7 +37,6 @@ const LoginPage = () => {
     }
     // 調用 login() 並傳入表單資料 username 和 password
     // const { success, authToken } = await login({
-
     // 修改成以下 回傳值變成只有一個布林值
     const success = await login({
       userName,
