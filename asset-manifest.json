@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/todoreact/static/css/main.4097c508.chunk.css",
+    "main.js": "/todoreact/static/js/main.9f4a41c4.chunk.js",
+    "main.js.map": "/todoreact/static/js/main.9f4a41c4.chunk.js.map",
+    "runtime-main.js": "/todoreact/static/js/runtime-main.e3e98958.js",
+    "runtime-main.js.map": "/todoreact/static/js/runtime-main.e3e98958.js.map",
+    "static/js/2.f581c9a5.chunk.js": "/todoreact/static/js/2.f581c9a5.chunk.js",
+    "static/js/2.f581c9a5.chunk.js.map": "/todoreact/static/js/2.f581c9a5.chunk.js.map",
+    "static/js/3.320210fc.chunk.js": "/todoreact/static/js/3.320210fc.chunk.js",
+    "static/js/3.320210fc.chunk.js.map": "/todoreact/static/js/3.320210fc.chunk.js.map",
+    "index.html": "/todoreact/index.html",
+    "static/css/main.4097c508.chunk.css.map": "/todoreact/static/css/main.4097c508.chunk.css.map",
+    "static/js/2.f581c9a5.chunk.js.LICENSE.txt": "/todoreact/static/js/2.f581c9a5.chunk.js.LICENSE.txt",
+    "static/media/ac-logo.eea79863.svg": "/todoreact/static/media/ac-logo.eea79863.svg",
+    "static/media/check-active.680985db.svg": "/todoreact/static/media/check-active.680985db.svg",
+    "static/media/check-circle.ad8591fd.svg": "/todoreact/static/media/check-circle.ad8591fd.svg",
+    "static/media/check-hover.f1b1bcfd.svg": "/todoreact/static/media/check-hover.f1b1bcfd.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e3e98958.js",
+    "static/js/2.f581c9a5.chunk.js",
+    "static/css/main.4097c508.chunk.css",
+    "static/js/main.9f4a41c4.chunk.js"
+  ]
+}
