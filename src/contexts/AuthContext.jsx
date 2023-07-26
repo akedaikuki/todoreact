@@ -75,7 +75,7 @@ export const AuthProvider = ({ children }) => {
         // 註冊方法
         register: async (data) => {
           const { success, authToken } = await register({
-            username: data.username,
+            username: data.userName, //要注意 是 userName
             email: data.email,
             password: data.password,
           });
@@ -97,7 +97,7 @@ export const AuthProvider = ({ children }) => {
         // 登入方法
         login: async (data) => {
           const { success, authToken } = await login({
-            username: data.username,
+            username: data.userName,
             password: data.password,
           });
           const tempPayload = jwt.decode(authToken);
